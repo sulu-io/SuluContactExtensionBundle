@@ -1,0 +1,7 @@
+sulu_contact_extension:
+    resource: "@SuluContactExtensionBundle/Resources/config/routing.xml"
+
+sulu_contact_extension_api:
+    type: rest
+    resource: "@SuluContactExtensionBundle/Resources/config/routing_extension_api.yml"
+    prefix: /api

@@ -11,7 +11,8 @@
 namespace Sulu\Bundle\ContactExtensionBundle\Tests\Functional\Controller;
 
 use DateTime;
-use Sulu\Bundle\ContactBundle\Entity\Account;
+
+use Doctrine\ORM\EntityManager;
 use Sulu\Bundle\ContactBundle\Entity\AccountAddress;
 use Sulu\Bundle\ContactBundle\Entity\AccountContact;
 use Sulu\Bundle\ContactBundle\Entity\Contact;
@@ -27,10 +28,56 @@ use Sulu\Bundle\ContactBundle\Entity\Fax;
 use Sulu\Bundle\ContactBundle\Entity\FaxType;
 use Sulu\Bundle\ContactBundle\Entity\Url;
 use Sulu\Bundle\ContactBundle\Entity\UrlType;
+use Sulu\Bundle\ContactExtensionBundle\Entity\Account;
 use Sulu\Bundle\TestBundle\Testing\SuluTestCase;
 
 class AccountControllerTest extends SuluTestCase
 {
+    /**
+     * @var string
+     */
+    protected $emailType;
+
+    /**
+     * @var Email
+     */
+    protected $email;
+
+    /**
+     * @var EntityManager
+     */
+    protected $em;
+
+    /**
+     * @var Address
+     */
+    protected $address;
+
+    /**
+     * @var UrlType
+     */
+    protected $urlType;
+
+    /**
+     * @var PhoneType
+     */
+    protected $phoneType;
+
+    /**
+     * @var FaxType
+     */
+    protected $faxType;
+
+    /**
+     * @var Country
+     */
+    protected $country;
+
+    /**
+     * @var AddressType
+     */
+    protected $addressType;
+
     /**
      * @var Account
      */
@@ -45,7 +92,6 @@ class AccountControllerTest extends SuluTestCase
      * @var Account
      */
     private $parentAccount;
-
 
     public function setUp()
     {
@@ -153,8 +199,8 @@ class AccountControllerTest extends SuluTestCase
         $accountAddress->setAddress($address);
         $accountAddress->setAccount($account);
         $accountAddress->setMain(true);
-        $account->addAccountAddresse($accountAddress);
-        $address->addAccountAddresse($accountAddress);
+        $account->addAccountAddress($accountAddress);
+        $address->addAccountAddress($accountAddress);
 
         $contact = new Contact();
         $contact->setFirstName("Vorname");
@@ -202,7 +248,7 @@ class AccountControllerTest extends SuluTestCase
 
         $client->request(
             'POST',
-            '/api/accounts/' . $this->account->getId() .'?action=convertAccountType&type=lead'
+            '/api/accounts/' . $this->account->getId() . '?action=convertAccountType&type=lead'
         );
 
         $response = json_decode($client->getResponse()->getContent());
@@ -219,7 +265,7 @@ class AccountControllerTest extends SuluTestCase
 
         $client->request(
             'POST',
-            '/api/accounts/' . $this->account->getId() .'?action=xyz&type=lead'
+            '/api/accounts/' . $this->account->getId() . '?action=xyz&type=lead'
         );
 
         $this->assertEquals(400, $client->getResponse()->getStatusCode());

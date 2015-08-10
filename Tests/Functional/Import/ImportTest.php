@@ -22,7 +22,7 @@ use Sulu\Bundle\ContactBundle\Entity\PhoneType;
 use Sulu\Bundle\ContactBundle\Entity\EmailType;
 use Sulu\Bundle\ContactBundle\Entity\UrlType;
 use Sulu\Bundle\ContactBundle\Entity\Note;
-use Sulu\Bundle\ContactBundle\Import\Import;
+use Sulu\Bundle\ContactExtensionBundle\Import\Import;
 use Sulu\Bundle\TestBundle\Testing\SuluTestCase;
 
 class ImportTest extends SuluTestCase
