@@ -1,0 +1,17 @@
+sudo: false
+
+language: php
+
+php:
+  - 5.5
+
+env:
+  - DB=mysql
+
+before_script:
+  - composer self-update
+  - composer install
+  - if [[ "$DB" == "mysql" ]]; then mysql -e "CREATE DATABASE sulu_test;"; fi
+  - vendor/symfony-cmf/testing/bin/console doctrine:schema:create
+
+script: phpunit --coverage-text

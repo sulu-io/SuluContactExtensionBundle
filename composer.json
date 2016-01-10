@@ -6,10 +6,25 @@
     "keywords": ["contact", "crm"],
     "require": {
         "php": ">=5.4",
-        "sulu/sulu": "dev-develop"
+        "doctrine/orm": "2.4.*",
+        "willdurand/hateoas-bundle": "0.3.*",
+
+        "oro/doctrine-extensions": "1.0.*",
+        "symfony-cmf/routing-bundle": "1.2.*",
+
+        "sulu/sulu": "dev-develop",
+
+        "jackalope/jackalope-doctrine-dbal": "~1.2.0",
+        "jackalope/jackalope-jackrabbit": "~1.2.0"
     },
     "require-dev": {
-	"jackalope/jackalope-doctrine-dbal": "~1.2.0"
+        "sensio/framework-extra-bundle":  "~3.0",
+        "symfony/symfony": "2.6.*",
+        "symfony/monolog-bundle": "2.4.*",
+        "phpunit/phpunit": "~4.0.0",
+        "symfony-cmf/testing": "~1.2",
+        "sulu/test-bundle": "dev-develop",
+        "massive/search-bundle": "0.7.*"
     },
     "autoload": {
         "psr-0": {
@@ -18,4 +33,3 @@
     },
     "target-dir": "Sulu/Bundle/ContactExtensionBundle"
 }
-
