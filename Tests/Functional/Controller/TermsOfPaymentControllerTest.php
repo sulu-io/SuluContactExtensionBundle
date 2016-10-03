@@ -17,7 +17,7 @@ class TermsOfPaymentControllerTest extends SuluTestCase
 {
     public function setUp()
     {
-        $this->em = $this->db('ORM')->getOm();
+        $this->em = $this->getEntityManager();
         $this->initOrm();
     }
 
@@ -112,7 +112,7 @@ class TermsOfPaymentControllerTest extends SuluTestCase
             )
         );
 
-        $this->assertEquals(500, $client->getResponse()->getStatusCode());
+        $this->assertEquals(400, $client->getResponse()->getStatusCode());
         $this->checkAssertionsForOriginalState();
 
     }
